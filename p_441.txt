@@ -1,0 +1,23 @@
+1. Explain days(!overnight) and days(overnight) to
+someone who has just started learning R. What is the key fact
+you need to know?
+
+TRUE equals 1, FALSE equals 0
+
+2. Create a vector of dates giving the first day of every month in
+2015. Create a vector of dates giving the first day of every
+month in the current year.
+
+ymd(2015-01-01) + month(0:11)
+
+floor(today(), unit = year) + month(0:11)
+
+3. Write a function that, given your birthday (as a date), returns
+how old you are in years.
+
+h_age <- today() - ymd("y-m-d")
+
+4. Why can’t (today() %--% (today() + years(1))) /
+months(1) work?
+
+Intervlas and months are defined differently.

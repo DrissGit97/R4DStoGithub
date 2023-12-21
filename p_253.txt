@@ -1,0 +1,30 @@
+1. Use geom_text() with infinite positions to place text at the
+four corners of the plot.
+
+?geom_text
+
+2. Use annotate() to add a point geom in the middle of your last
+plot without having to create a tibble. Customize the shape, size,
+or color of the point.
+
+?annotate()
+
+3. How do labels with geom_text() interact with faceting? How
+can you add a label to a single facet? How can you put a
+different label in each facet? (Hint: Think about the dataset that
+is being passed to geom_text().)
+
+They apply to every facet. 
+
+To make it apply to only one facet, you add acolum to the label data frame (e.g. class = "seater")
+
+4. What arguments to geom_label() control the appearance of
+the background box?
+
+?geom_label()
+
+5. What are the four arguments to arrow()? How do they work?
+Create a series of plots that demonstrate the most important
+options.
+
+?arrow()

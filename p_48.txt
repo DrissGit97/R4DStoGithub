@@ -1,0 +1,28 @@
+1. Make a bar plot of species of penguins, where you assign
+species to the y aesthetic. How is this plot different?
+
+ggplot(penguins) + geom_bar(aes(y = species))
+
+It represents the count of species horizontally.
+
+2. How are the following two plots different? Which aesthetic,
+color or fill, is more useful for changing the color of bars?
+ggplot(penguins, aes(x = species)) +
+geom_bar(color = "red")
+ggplot(penguins, aes(x = species)) +
+geom_bar(fill = "red")
+
+fill colors the entire bar while color countours it with the defined color.
+
+3. What does the bins argument in geom_histogram() do?
+
+bins is different from binwidth in that it defines the number of bins, instead of the width of the bins.
+
+4. Make a histogram of the carat variable in the diamonds
+dataset that is available when you load the tidyverse package.
+Experiment with different binwidth values. What value reveals
+the most interesting patterns?
+
+ggplot(diamonds) + geom_histogram(aes(y = carat))
+
+In this case, a lower binwidth reveals more details in the graph.

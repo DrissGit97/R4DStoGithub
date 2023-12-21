@@ -1,0 +1,30 @@
+1. What is the problem with the following plot? How could you
+improve it?
+ggplot(mpg, aes(x = cty, y = hwy)) +
+geom_point()
+
+The data is overlapping. Using geom_jitter would be good.
+
+2. What, if anything, is the difference between the two plots? Why?
+ggplot(mpg, aes(x = displ, y = hwy)) +
+geom_point()
+ggplot(mpg, aes(x = displ, y = hwy)) +
+geom_point(position = "identity")
+
+There is no difference because geom_point() doesn't take the position argument
+
+3. What parameters to geom_jitter() control the amount of
+jittering?
+
+width and height
+
+4. Compare and contrast geom_jitter() with geom_count().
+
+geom_jitter is better to use in cases where data overlaps. Otherwise, geom_count is better.
+
+5. What’s the default position adjustment for geom_boxplot()?
+Create a visualization of the mpg dataset that demonstrates it.
+
+dodge2
+
+ggplot(mpg, aes(x = hwy, y = model) + geom_boxplot()

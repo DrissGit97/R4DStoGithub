@@ -1,0 +1,43 @@
+1. We forgot to draw the relationship between weather and
+airports in Figure 19-1. What is the relationship, and how
+should it appear in the diagram?
+
+origin 
+
+
+2. weather contains information for only the three origin airports in
+NYC. If it contained weather records for all airports in the US, what
+additional connection would it make to flights?
+
+Information about the weather
+
+
+3. The year, month, day, hour, and origin variables almost form
+a compound key for weather, but there’s one hour that has
+duplicate observations. Can you figure out what’s special about
+that hour?
+
+
+
+4. We know that some days of the year are special and fewer people
+than usual fly on them (e.g., Christmas Eve and Christmas Day).
+How might you represent that data as a data frame? What would
+be the primary key? How would it connect to the existing data
+frames?
+
+datetime, holiday_name
+
+the primary key would be datetime
+
+It would connect to flights, etc. through the primary key datetime
+
+5. Draw a diagram illustrating the connections between the Batting,
+People, and Salaries data frames in the Lahman package.
+Draw another diagram that shows the relationship between
+People, Managers, and AwardsManagers. How would you
+characterize the relationship between the Batting, Pitching,
+and Fielding data frames?
+
+You find the details through ?table_name or through view
+You check the foreign keys
+You create a diagram showing the connections

@@ -1,0 +1,4 @@
+1. Can you find any relationship between the carrier and the rows
+that appear to be missing from planes?
+
+antijoin

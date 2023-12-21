@@ -1,0 +1,99 @@
+1. Which carrier has the worst average delays? Challenge: Can
+you disentangle the effects of bad airports versus bad carriers?
+Why/why not? (Hint: Think about flights |>
+group_by(carrier, dest) |> summarize(n()).)
+
+flights |> filter(!is.na(dep_delay)) |> filter(!is.na(arr_delay)) |> group_by(carrier) |> mutate(avg_delays = mean(dep_delay + arr_delay)) |> relocate(avg_delays) |> arrange(desc(avg_delays))
+
+
+2. Find the flights that are most delayed upon departure from each
+destination.
+
+flights |> filter(!is.na(dep_delay)) |> filter(!is.na(arr_delay)) |> group_by(dest, carrier) |> mutate(upon_dep_delays = mean(arr_delay)) |> relocate(upon_dep_delays) |> arrange(desc(upon_dep_delays))
+
+3. How do delays vary over the course of the day. Illustrate your
+answer with a plot.
+
+flights |> group_by(year, month, day, hour) |> mutate(avg_delays = mean(dep_delay + arr_delay)) |> ggplot(aes(x = hour, y = avg_delays)) + geom_smooth()
+The later inthe day, the higher the delay is.
+
+
+4. What happens if you supply a negative n to slice_min() and
+friends?
+
+A negative value of n or prop will be subtracted from the group size. For example, n = -2 with a group of 5 rows will select 5 - 2 = 3 rows
+
+5. Explain what count() does in terms of the dplyr verbs you just
+learned. What does the sort argument to count() do?
+
+It groups by the selected variable and creates a new row called 'n' which contains the number of repetitions
+In the case of sort: 
+	if TRUE, will show the largest groups at the top.
+
+
+6. Suppose we have the following tiny data frame:
+df <- tibble(
+x = 1:5,
+y = c("a", "b", "a", "a", "b"),
+z = c("K", "K", "L", "L", "K")
+)
+a. Write down what you think the output will look like; then
+check if you were correct and describe what group_by()
+does.
+df |>
+group_by(y)
+
+It groups the same variable into one lump
+
+b. Write down what you think the output will look like; then
+check if you were correct and describe what arrange()
+does. Also comment on how it’s different from the
+group_by() in part (a).
+df |>
+arrange(y)
+
+it arranges by alphabetical order and doesn't create a group
+
+
+c. Write down what you think the output will look like; then
+check if you were correct and describe what the pipeline
+does.
+
+df |>
+group_by(y) |>
+summarize(mean_x = mean(x))
+
+It groups based on the variables in y and creates a new colum called mean_x that calculates the mean of the values in a based on the groups of y.
+
+
+d. Write down what you think the output will look like; then
+check if you were correct and describe what the pipeline
+does. Then, comment on what the message says.
+df |>
+group_by(y, z) |>
+summarize(mean_x = mean(x))
+
+It groups based on the variables in y AND z and then, based on those groups, calculates the mean of the numbers in x.
+
+
+e. Write down what you think the output will look like; then
+check if you were correct and describe what the pipeline
+does. How is the output different from the one in part (d)?
+df |>
+group_by(y, z) |>
+summarize(mean_x = mean(x), .groups = "drop")
+
+It groups by y and z, calculates the means of x based on those groups, and then drops the groups.
+
+
+f. Write down what you think the outputs will look like; then
+check if you were correct and describe what each pipeline
+does. How are the outputs of the two pipelines different?
+df |>
+group_by(y, z) |>
+summarize(mean_x = mean(x))
+df |>
+group_by(y, z) |>
+mutate(mean_x = mean(x))
+
+They return the same data, summarize with groups and mutate without them.

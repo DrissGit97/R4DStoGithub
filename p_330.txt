@@ -1,0 +1,63 @@
+1. Find the 10 most delayed flights using a ranking function. How
+do you want to handle ties? Carefully read the documentation
+for min_rank().
+
+?min_rank()
+
+2. Which plane (tailnum) has the worst on-time record?
+
+we sum arr_delay and dep_delay and use that to rank tailnumbers
+
+3. What time of day should you fly if you want to avoid delays as
+much as possible?
+
+We group by year, month, day, hour, minutes and then rank the flights based on the sum or arr_delay and dep_delay
+
+4. What does flights |> group_by(dest) |>
+filter(row_number() < 4) do? What does flights |>
+group_by(dest) |> filter(row_number(dep_delay)
+< 4) do?
+
+It groups the flights by destination and removes the rows beyond the fourth rank.
+
+It groups the flights by destination and then removes the ones that come after the fourth rank in terms of dep_delay
+
+
+5. For each destination, compute the total minutes of delay. For
+each flight, compute the proportion of the total delay for its
+destination.
+
+we group by destination and then sum dep_delay and arr_delay
+we group and then calculate the proportion
+
+
+6. Delays are typically temporally correlated: even once the
+problem that caused the initial delay has been resolved, later
+flights are delayed to allow earlier flights to leave. Using lag(),
+explore how the average flight delay for an hour is related to the
+average delay for the previous hour.
+
+flights |>
+mutate(hour = dep_time %/% 100) |>
+group_by(year, month, day, hour) |>
+summarize(
+dep_delay = mean(dep_delay, na.rm = TRUE),
+n = n(),
+.groups = "drop"
+) |>
+filter(n > 5)
+
+flights |> group_by(year, month, day, hour) |> mutate(prev_flight_dep_delay = lag(dep_delay)) |> ggplot(aes(x = dep_delay, y = prev_flight_dep_delay)) + geom_point()
+
+
+7. Look at each destination. Can you find flights that are
+suspiciously fast (i.e., flights that represent a potential data entry
+error)? Compute the air time of a flight relative to the shortest
+flight to that destination. Which flights were most delayed in the
+air?
+
+
+
+8. Find all destinations that are flown by at least two carriers. Use
+those destinations to come up with a relative ranking of the
+carriers based on their performance for the same destination.

@@ -1,0 +1,72 @@
+1. What happens if you facet on a continuous variable?
+
+It creates too many separate graphs.
+
+2. What do the empty cells in the plot with facet_grid(drv ~
+cyl) mean? Run the following code. How do the cells relate to
+the resulting plot?
+ggplot(mpg) +
+geom_point(aes(x = drv, y = cyl))
+
+It means that there is no data for that range. 
+The cells have the same size in every facet.
+
+3. What plots does the following code make? What does . do?
+ggplot(mpg) +
+geom_point(aes(x = displ, y = hwy)) +
+facet_grid(drv ~ .)
+ggplot(mpg) +
+geom_point(aes(x = displ, y = hwy)) +
+facet_grid(. ~ cyl)
+
+It creates a facet with only one variable. (on the x or y axis, depending on whether you input the dot before or after the facet variable)
+
+
+
+4. Take the first faceted plot in this section:
+ggplot(mpg) +
+geom_point(aes(x = displ, y = hwy)) +
+facet_wrap(~ class, nrow = 2)
+What are the advantages to using faceting instead of the color
+aesthetic? What are the disadvantages? How might the balance
+change if you had a larger dataset?
+
+The advantage is that it divides the information into different groups, avoiding clustering data.
+The disadvantage is that it is harder to compare the data
+If the dataset is larger, faceting would be easier to interpret.
+
+5. Read ?facet_wrap. What does nrow do? What does ncol
+do? What other options control the layout of the individual
+panels? Why doesn’t facet_grid() have nrow and ncol
+arguments?
+
+nrow defines the number of rows you split the facets into. ncol does the same for columns. There is also scales, labeller...
+facet_grid doesn't have that because it only creates one facet based on the selected variable.
+
+6. Which of the following plots makes it easier to compare engine
+size (displ) across cars with different drivetrains? What does
+this say about when to place a faceting variable across rows or
+columns?
+ggplot(mpg, aes(x = displ)) +
+geom_histogram() +
+facet_grid(drv ~ .)
+ggplot(mpg, aes(x = displ)) +
+geom_histogram() +
+facet_grid(. ~ drv)
+
+The first one is easier to compare because they are right on top of each other with the same x-axis.
+
+7. Re-create the following plot using facet_wrap() instead of
+facet_grid(). How do the positions of the facet labels
+change?
+ggplot(mpg) +
+geom_point(aes(x = displ, y = hwy)) +
+facet_grid(drv ~ .)
+
+ggplot(mpg) +
+geom_point(aes(x = displ, y = hwy)) +
+facet_grid(drv ~ .)
+
+ggplot(mpg) + 
+  geom_point(aes(x = displ, y = hwy)) +
+  facet_wrap(~drv, nrow = 3)

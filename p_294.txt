@@ -1,0 +1,17 @@
+1. How does dplyr::near() work? Type near to see the
+source code. Is sqrt(2)^2 near 2?
+
+It compares two floating point numbers with a built in tolerance
+Yes, sqrt(2)^2 is near 2 
+
+
+
+2. Use mutate(), is.na(), and count() together to describe
+how the missing values in dep_time, sched_dep_time, and
+dep_delay are connected.
+
+flights |> mutate(missing = (!is.na(dep_time) & is.na(dep_delay))) |> filter(missing)
+flights |> mutate(missing = (is.na(dep_time) & !is.na(dep_delay))) |> filter(missing)
+etc...
+
+This way we see when one variable is missing or not based on the other mentioned ones. 

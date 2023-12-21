@@ -1,0 +1,15 @@
+1. When computing the distribution of the length of baby names,
+why did we use wt = n?
+
+We did it to add together the total count of each baby name
+
+2. Use str_length() and str_sub() to extract the middle
+letter from each baby name. What will you do if the string has an
+even number of characters?
+
+We check first if the name has an even or odd number of letters. If it's odd, we remove only one letter and if it's even, two.
+
+3. Are there any major trends in the length of baby names over
+time? What about the popularity of first and last letters?
+
+Yes, shorter names are becoming more popular...

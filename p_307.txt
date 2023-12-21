@@ -1,0 +1,36 @@
+1. A number is even if it’s divisible by two, which in R you can find
+out with x %% 2 == 0. Use this fact and if_else() to
+determine whether each number between 0 and 20 is even or
+odd.
+
+x <- (0:20)
+
+if_else(x %% 2 == 0, even, odd)
+
+
+
+2. Given a vector of days like x <- c("Monday",
+"Saturday", "Wednesday"), use an ifelse() statement
+to label them as weekends or weekdays.
+
+ifelse(x == "Saturday", weekends, weekdays)
+
+3. Use ifelse() to compute the absolute value of a numeric
+vector called x.
+
+ifelse(x > 0, x, -x)
+
+4. Write a case_when() statement that uses the month and day
+columns from flights to label a selection of important US
+holidays (e.g., New Years Day, Fourth of July, Thanksgiving, and
+Christmas). First create a logical column that is either TRUE or
+FALSE, and then create a character column that either gives the
+name of the holiday or is NA.
+
+
+case_when(
+month = celebration month & day = celebration day, HOLIDAY = TRUE, HOLIDAY = FALSE...)
+
+case_when(
+HOLIDAY = TRUE & month = celebration month & day = celebration day, holiday name, normal day)
+

@@ -1,0 +1,18 @@
+1. Brainstorm at least five ways to assess the typical delay
+characteristics of a group of flights. When is mean() useful?
+When is median() useful? When might you want to use
+something else? Should you use arrival delay or departure
+delay? Why might you want to use data from planes?
+
+mean is useful when you do not have a lot of outliers
+median is useful when you do
+departure delay 
+
+2. Which destinations show the greatest variation in air speed?
+
+flights |> filter(!is.na(distance), !is.na(air_time)) |> group_by(dest) |> mutate(avg_air_speed = mean(distance/air_time), .before = 1)
+
+3. Create a plot to further explore the adventures of EGE. Can you
+find any evidence that the airport moved locations? Can you find
+another variable that might explain the difference?
+

@@ -1,0 +1,15 @@
+1. What will sum(is.na(x)) tell you? How about
+mean(is.na(x))?
+
+The number of NAs
+The average of NAs
+
+2. What does prod() return when applied to a logical vector?
+What logical summary function is it equivalent to? What does
+min() return when applied to a logical vector? What logical
+summary function is it equivalent to? Read the documentation
+and perform a few experiments.
+
+One when prod()'s argument is 'TRUE' and zero when its argument is 'FALSE'. The same applies to min().
+
+?summary

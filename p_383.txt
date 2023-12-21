@@ -1,0 +1,88 @@
+(DONE BEFORE -- EASY, SO I SKIPPED REDOING IT)
+
+1. How would you match the literal string "'\? How about "$^$"?
+
+\"\'\\\
+\$\^\$
+
+2. Explain why each of these patterns don’t match a \: "\", "\\",
+"\\\".
+
+The first \ needs to be escaped
+The second \\ needs to be escaped again
+the third needs one more escape 
+
+3. Given the corpus of common words in stringr::words, create
+regular expressions that find all words that:
+a. Start with “y.”
+
+^y
+
+b. Don’t start with “y.”
+^[^y]
+c. End with “x.”
+x$
+d. Are exactly three letters long. (Don’t cheat by using
+str_length()!)
+
+^...$
+
+e. Have seven letters or more.
+
+.......+
+f. Contain a vowel-consonant pair.
+[aeiou][^aeiou]
+g. Contain at least two vowel-consonant pairs in a row.
+
+[aeiou][^aeiou][aeiou][^aeiou]
+
+h. Only consist of repeated vowel-consonant pairs.
+[aeiou][^aeiou]+
+
+4. Create 11 regular expressions that match the British or American
+spellings for each of the following words: airplane/aeroplane,
+aluminum/aluminium, analog/analogue, ass/arse, center/centre,
+defense/defence, donut/doughnut, gray/grey, modeling/modelling,
+skeptic/sceptic, summarize/summarise. Try to make the shortest
+possible regex!
+
+We do that with ? alumini?um
+
+5. Switch the first and last letters in words. Which of those strings are
+still words?
+
+[A-z][A-z]*[A-z]$ \\3\\2\\1
+
+words%in%[results from the previous search]
+
+6. Describe in words what these regular expressions match (read
+carefully to see if each entry is a regular expression or a string that
+defines a regular expression):
+a. ^.*$
+
+any word
+
+
+b. "\\{.+\\}"
+
+{symbols}
+
+c. \d{4}-\d{2}-\d{2}
+
+four digits, a dash, two digits, a dash, two digits
+
+d. "\\\\{4}"
+
+Four backslashes
+e. \..\..\..
+
+A dot and a character, three times
+
+f. (.)\1\1
+a character appearing three times in a rw
+
+g. "(..)\\1"
+
+Two letters appearing in a row
+
+7. Solve the beginner regexp crosswords.

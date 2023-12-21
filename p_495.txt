@@ -1,0 +1,27 @@
+1. Can you explain what’s happening with the keys in this equi join?
+Why are they different?
+x |> full_join(y, by = "key")
+#> # A tibble: 4 × 3
+#> key val_x val_y
+#> <dbl> <chr> <chr>
+#> 1 1 x1 y1
+#> 2 2 x2 y2
+#> 3 3 x3 <NA>
+#> 4 4 <NA> y3
+x |> full_join(y, by = "key", keep = TRUE)
+#> # A tibble: 4 × 4
+#> key.x val_x key.y val_y
+#> <dbl> <chr> <dbl> <chr>
+#> 1 1 x1 1 y1
+#> 2 2 x2 2 y2
+#> 3 3 x3 NA <NA>
+#> 4 NA <NA> 4 y3
+
+In the first one it joins columns key.x and key.y into one while it keeps them separate in the latter one.
+
+2. When finding if any party period overlapped with another party
+period, we used q < q in the join_by()? Why? What happens if
+you remove this inequality?
+
+?
+It doesn't show the overlapping dates and prints all of them instead.

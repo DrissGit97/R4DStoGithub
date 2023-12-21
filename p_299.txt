@@ -1,0 +1,22 @@
+1. Find all flights where arr_delay is missing but dep_delay is
+not. Find all flights where neither arr_time nor
+sched_arr_time is missing, but arr_delay is.
+
+flights |> filter(is.na(arr_delay) & !is.na(dep_delay)
+flights |> filter(!is.na(arr_time) & !is.na(sched_arr_time) & is.na(arr_delay)
+
+
+2. How many flights have a missing dep_time? What other
+variables are missing in these rows? What might these rows
+represent?
+
+8245 flights.
+dep_delay, arr_time, arr_delay, air_time. All of them are based on dep_time
+
+3. Assuming that a missing dep_time implies that a flight is
+cancelled, look at the number of cancelled flights per day. Is
+there a pattern? Is there a connection between the proportion of
+canceled flights and the average delay of non-cancelled flights?
+
+flights |> group_by(year, month, day) |> filter(is.na(dep_time)) |> count(dep_time)
+

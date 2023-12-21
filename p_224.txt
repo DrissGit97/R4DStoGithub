@@ -1,0 +1,25 @@
+1. What happens to missing values in a histogram? What happens
+to missing values in a bar chart? Why is there a difference in
+how missing values are handled in histograms and bar charts?
+2. What does na.rm = TRUE do in mean() and sum()?
+
+In a histogram missing values are removed when creating the bins.
+In a bar graph missing values are computed within a group called 'na'
+
+
+3. Re-create the frequency plot of scheduled_dep_time colored
+by whether the flight was cancelled or not. Also facet by the
+cancelled variable. Experiment with different values of the
+scales variable in the faceting function to mitigate the effect of
+more noncancelled flights than cancelled flights.
+
+nycflights13::flights |>
+mutate(
+cancelled = is.na(dep_time),
+
+sched_hour = sched_dep_time %/% 100,
+sched_min = sched_dep_time %% 100,
+sched_dep_time = sched_hour + (sched_min / 60)
+) |>
+ggplot(aes(x = sched_dep_time)) +
+geom_freqpoly(aes(color = cancelled), binwidth = 1/4)

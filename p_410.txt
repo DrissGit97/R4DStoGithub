@@ -1,0 +1,16 @@
+(DONE BEFORE -- EASY, SO I SKIPPED REDOING IT)
+
+1. How have the proportions of people identifying as Democrat, Republican,
+and Independent changed over time?
+
+We group by partyid and plot time in x and partyid in y through a bar
+
+2. How could you collapse rincome into a small set of categories?
+
+fct_collapse()
+
+3. Notice there are 9 groups (excluding other) in the previous fct_lump
+example. Why not 10? (Hint: Type ?fct_lump, and find the default for the
+argument other_level is “Other.”)
+
+It's because by default it groups the rest into 'Others'

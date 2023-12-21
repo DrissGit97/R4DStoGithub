@@ -1,0 +1,74 @@
+1. The mpg data frame that is bundled with the ggplot2 package
+contains 234 observations collected by the US Environmental
+Protection Agency on 38 car models. Which variables in mpg
+are categorical? Which variables are numerical? (Hint: Type ?
+mpg to read the documentation for the dataset.) How can you
+see this information when you run mpg?
+
+Categorical: manufacturer, model, year, cyl(could be numerical too), trans, drv, fl, class
+Numerical: displ, cty, hwy, 
+
+
+2. Make a scatterplot of hwy versus displ using the mpg data
+frame. Next, map a third, numerical variable to color, then
+size, then both color and size, and then shape. How do
+these aesthetics behave differently for categorical versus
+numerical variables?
+
+ggplot(mpg, aes(y = hwy, x = displ)) + geom_point()
+
+ggplot(mpg, aes(y = hwy, x = displ, color = drv)) + geom_point()
+ggplot(mpg, aes(y = hwy, x = displ, size = drv)) + geom_point()
+ggplot(mpg, aes(y = hwy, x = displ, size = drv, color = drv)) + geom_point()
+ggplot(mpg, aes(y = hwy, x = displ, shape = drv)) + geom_point()
+
+numerical variables should not be used in color, shape... because there are too many of them for it to be useful.
+
+3. In the scatterplot of hwy versus displ, what happens if you
+map a third variable to linewidth?
+
+It doesn't change the graph because it does not use lines.
+
+4. What happens if you map the same variable to multiple
+aesthetics?
+
+It shows the same color, shape... for each group. It is useful when data overlaps a lot but otherwise it is useless.
+
+5. Make a scatterplot of bill_depth_mm versus
+bill_length_mm and color the points by species. What
+does adding coloring by species reveal about the relationship
+between these two variables? What about faceting by species?
+
+ggplot(penguins, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) + geom_point()
+ggplot(penguins, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) + geom_point() + facet_wrap(~species)
+
+It shows that each species has similar attributes. It is useful to show the data in a more detailed way.
+
+
+
+6. Why does the following yield two separate legends? How would
+you fix it to combine the two legends?
+ggplot(
+data = penguins,
+mapping = aes(
+x = bill_length_mm, y = bill_depth_mm,
+color = species, shape = species
+)
+) +
+geom_point() +
+labs(color = "Species")
+
+
+To join the two legends, the name has to be exactly the same, without lower or upper case variations.
+
+
+7. Create the two following stacked bar plots. Which question can
+you answer with the first one? Which question can you answer
+with the second one?
+ggplot(penguins, aes(x = island, fill = species)) +
+geom_bar(position = "fill")
+ggplot(penguins, aes(x = species, fill = island)) +
+geom_bar(position = "fill")
+
+The first one represents the species count per island. 
+The second one represents the same information but in a different way.

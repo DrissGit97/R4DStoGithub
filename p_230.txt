@@ -1,0 +1,57 @@
+1. Use what you’ve learned to improve the visualization of the
+departure times of cancelled versus noncancelled flights.
+
+nycflights13::flights |>
+mutate(
+cancelled = is.na(dep_time),
+
+sched_hour = sched_dep_time %/% 100,
+sched_min = sched_dep_time %% 100,
+sched_dep_time = sched_hour + (sched_min / 60)
+) |>
+ggplot(aes(x = sched_dep_time)) +
+geom_boxplot(aes(y = sched_dep_time, x = cancelled)
+
+2. Based on EDA, what variable in the diamonds dataset appears
+to be most important for predicting the price of a diamond? How
+is that variable correlated with cut? Why does the combination
+of those two relationships lead to lower-quality diamonds being
+more expensive?
+
+The size
+
+3. Instead of exchanging the x and y variables, add
+coord_flip() as a new layer to the vertical boxplot to create
+a horizontal one. How does this compare to exchanging the
+variables?
+
+It does the same with less code.
+
+4. One problem with boxplots is that they were developed in an era
+of much smaller datasets and tend to display a prohibitively
+large number of “outlying values.” One approach to remedy this
+problem is the letter value plot. Install the lvplot package, and try
+using geom_lv() to display the distribution of price versus cut.
+What do you learn? How do you interpret the plots?
+
+It has multiple ranges.
+
+5. Create a visualization of diamond prices versus a categorical
+variable from the diamonds dataset using geom_violin(),
+then a faceted geom_histogram(), then a colored
+geom_freqpoly(), and then a colored geom_density().
+Compare and contrast the four plots. What are the pros and
+cons of each method of visualizing the distribution of a
+numerical variable based on the levels of a categorical variable?
+
+Data is easier to compare when it is found in the same graph. If we facet the violin graphs it mitigates some of the separation but it is still more difficult to interpret them together.
+
+6. If you have a small dataset, it’s sometimes useful to use
+geom_jitter() to avoid overplotting to more easily see the
+relationship between a continuous and categorical variable. The
+ggbeeswarm package provides a number of methods similar to
+geom_jitter(). List them and briefly describe what each one
+does.
+
+geom_beeswarm (jitters data into a 'beeswarm')
+geom_quasirandom works similarly to geom_jitter but with different sequences

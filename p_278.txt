@@ -1,0 +1,8 @@
+1. Pick a theme offered by the ggthemes package and apply it to
+the last plot you made.
+
+https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/
+
+2. Make the axis labels of your plot blue and bold.
+
+?theme

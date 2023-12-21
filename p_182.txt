@@ -1,0 +1,21 @@
+1. Create a scatterplot of hwy versus displ where the points are
+pink filled-in triangles.
+
+ggplot(mpg, aes(x = hwy, y = displ)) + geom_point(color = "pink", shape = "triangle")
+
+2. Why did the following code not result in a plot with blue points?
+ggplot(mpg) +
+geom_point(aes(x = displ, y = hwy, color = "blue"))
+
+color needs to be outside the aesthetics.
+
+3. What does the stroke aesthetic do? What shapes does it work
+with? (Hint: Use ?geom_point.)
+
+stroke controls the 'countour' around the geometric figures.
+
+4. What happens if you map an aesthetic to something other than
+a variable name, like aes(color = displ < 5)? Note, you’ll
+also need to specify x and y.
+
+It changes the color of the data that returns TRUE.

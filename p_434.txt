@@ -1,0 +1,40 @@
+1. How does the distribution of flight times within a day change
+over the course of the year?
+
+flights |> filter(!is.na(dep_time)) |> group_by(year, month, day, hour) |> ggplot(aes(x = hour)) + geom_freqpoly(.group = month)
+
+
+2. Compare dep_time, sched_dep_time, and dep_delay. Are
+they consistent? Explain your findings.
+
+flights |> filter(!is.na(dep_time)) |> group_by(year, month, day, hour) |> ggplot() + geom_freqpoly(aes(x = dep_time, color = "red")) + geom_freqpoly(aes(x = sched_dep_time, color = "blue")) + geom_freqpoly(aes(x = dep_delay, color = "darkgreen"))
+
+No, they are not consistent. Most departures happen early in the day, before 5 AM, while most 
+delays happen after 5 AM, peaking at around 8 AM, 3 PM AND 8 PM.
+
+3. Compare air_time with the duration between the departure
+and arrival. Explain your findings. (Hint: Consider the location of
+the airport.)
+
+We calculate a new 'air-time' based on the departure and arrival times and compare it to the column 'air-time'. We could also check the weather and plane data for more detail.
+
+4. How does the average delay time change over the course of a
+day? Should you use dep_time or sched_dep_time? Why?
+
+It increases the later in the day it is.  dep_time, because that is the actual date the plane took off.
+
+5. On what day of the week should you leave if you want to
+minimize the chance of a delay?
+
+Saturdays
+
+6. What makes the distribution of diamonds$carat and
+flights$sched_dep_time similar?
+
+?
+
+7. Confirm our hypothesis that the early departures of flights in
+minutes 20–30 and 50–60 are caused by scheduled flights that
+leave early. Hint: Create a binary variable that tells you whether
+a flight was delayed.
+

@@ -1,0 +1,31 @@
+1. Explain in words what each line of the code used to generate
+Figure 13-1 does.
+
+group_by joins variables into a group
+summarize creates a new column that calculates the mean
+filter removes flights that start after 1
+then the rest make a plot with a line and points that vary depending on density
+
+2. What trigonometric functions does R provide? Guess some
+names and look up the documentation. Do they use degrees or
+radians?
+
+All of them. They use radians.
+
+3. Currently dep_time and sched_dep_time are convenient to
+look at but hard to compute with because they’re not really
+continuous numbers. You can see the basic problem by running
+the following code; there’s a gap between each hour:
+
+flights |>
+filter(month == 1, day == 1) |>
+ggplot(aes(x = sched_dep_time, y = dep_delay)) +
+geom_point()
+Convert them to a more truthful representation of time (either
+fractional hours or minutes since midnight).
+
+We can use %% for hours and %/% for minutes
+
+4. Round dep_time and arr_time to the nearest five minutes.
+
+?floor

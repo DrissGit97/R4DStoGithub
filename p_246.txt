@@ -1,0 +1,16 @@
+1. Create one plot on the fuel economy data with customized
+title, subtitle, caption, x, y, and color labels.
+
+?labs
+
+2. Re-create the following plot using the fuel economy data. Note
+that both the colors and shapes of points vary by type of
+drivetrain.
+
+color = drv, shape = drv
+
+3. Take an exploratory graphic that you’ve created in the last
+month, and add informative titles to make it easier for others to
+understand.
+
+?labs

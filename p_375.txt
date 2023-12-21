@@ -1,0 +1,23 @@
+1. What baby name has the most vowels? What name has the highest
+proportion of vowels? (Hint: What is the denominator?)
+
+we use regex and [aeiuo]+ and then count
+
+
+2. Replace all forward slashes in "a/b/c/d/e" with backslashes.
+What happens if you attempt to undo the transformation by
+replacing all backslashes with forward slashes? (We’ll discuss the
+problem very soon.)
+
+str_replace_all
+
+3. Implement a simple version of str_to_lower() using
+str_replace_all().
+
+str_replace_all 
+tolower
+
+4. Create a regular expression that will match telephone numbers as
+commonly written in your country.
+
+str_view(num,"\\+\\d\\d-\\d\\d\\d\\d\\d\\d\\d\\d\\d") 
